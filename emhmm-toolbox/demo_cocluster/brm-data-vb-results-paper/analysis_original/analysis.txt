@@ -1,0 +1,99 @@
+=== t-tests ===========================
+group sizes:
+Explorative=33
+Focused=28
+                SS_Motivation: p=0.25367; t(59)=-1.15272; d=-0.29618 --- grp1(Explorative): mn=2.61061; std=0.561095; grp2(Focused): mn=2.7625; std=0.448996; 
+**                      SR_RT: p=0.03441; t(59)=-2.16547; d=-0.55639 --- grp1(Explorative): mn=1095.92; std=226.284; grp2(Focused): mn=1283.89; std=434.434; 
+**              SR_Dprime_Old: p=0.01931; t(59)=2.40541; d=0.61804 --- grp1(Explorative): mn=1.65507; std=0.627368; grp2(Focused): mn=1.18964; std=0.87909; 
+**             SR_Dprime_newb: p=0.03555; t(59)=2.15143; d=0.55278 --- grp1(Explorative): mn=0.786244; std=0.341384; grp2(Focused): mn=0.588363; std=0.376682; 
+**       SR_Dprime_difference: p=0.03721; t(59)=2.13169; d=0.54771 --- grp1(Explorative): mn=0.86883; std=0.398536; grp2(Focused): mn=0.601276; std=0.577235; 
+**          SR_Dprime_overall: p=0.01945; t(59)=2.40249; d=0.61729 --- grp1(Explorative): mn=1.1753; std=0.411123; grp2(Focused): mn=0.861632; std=0.603245; 
+               Nback_V_Dprime: p=0.89447; t(59)=0.13322; d=0.03423 --- grp1(Explorative): mn=2.78773; std=0.552042; grp2(Focused): mn=2.76602; std=0.719588; 
+         Nback_V_ReactionTime: p=0.55728; t(59)=0.59024; d=0.15166 --- grp1(Explorative): mn=732.487; std=150.11; grp2(Focused): mn=709.07; std=159.351; 
+               Nback_S_Dprime: p=0.17269; t(59)=-1.38033; d=-0.35466 --- grp1(Explorative): mn=2.11424; std=0.685496; grp2(Focused): mn=2.35971; std=0.69994; 
+         Nback_S_ReactionTime: p=0.97045; t(59)=-0.03720; d=-0.00956 --- grp1(Explorative): mn=764.673; std=213.63; grp2(Focused): mn=766.543; std=171.999; 
+      Flanker_Incongruent_ACC: p=0.42026; t(59)=-0.81163; d=-0.20854 --- grp1(Explorative): mn=0.880303; std=0.153699; grp2(Focused): mn=0.915179; std=0.181982; 
+**      Flanker_Congruent_ACC: p=0.01187; t(59)=-2.59652; d=-0.66715 --- grp1(Explorative): mn=0.987121; std=0.0217597; grp2(Focused): mn=0.998214; std=0.00655663; 
+          Flanker_Neutral_ACC: p=0.20549; t(59)=-1.28018; d=-0.32893 --- grp1(Explorative): mn=0.974242; std=0.0367024; grp2(Focused): mn=0.984821; std=0.0257654; 
+          Flanker_Overall_ACC: p=0.21256; t(59)=-1.26019; d=-0.32379 --- grp1(Explorative): mn=0.947222; std=0.0551461; grp2(Focused): mn=0.966071; std=0.0616528; 
+       Flanker_Incongruent_RT: p=0.53964; t(59)=-0.61695; d=-0.15852 --- grp1(Explorative): mn=409.776; std=49.1077; grp2(Focused): mn=421.205; std=92.2073; 
+         Flanker_Congruent_RT: p=0.14440; t(59)=-1.47921; d=-0.38007 --- grp1(Explorative): mn=360.514; std=36.9734; grp2(Focused): mn=373.942; std=33.2762; 
+           Flanker_Neutral_RT: p=0.24397; t(59)=-1.17688; d=-0.30238 --- grp1(Explorative): mn=363.889; std=38.6879; grp2(Focused): mn=375.096; std=35.0379; 
+           Flanker_Overall_RT: p=0.27228; t(59)=-1.10817; d=-0.28473 --- grp1(Explorative): mn=378.06; std=39.9191; grp2(Focused): mn=390.081; std=44.7944; 
+         TOL_OutExecutionTime: p=0.99816; t(58)=-0.00232; d=-0.00060 --- grp1(Explorative): mn=15099.2; std=10383.4; grp2(Focused): mn=15105.8; std=11466.6; 
+        TOL_OutInitiationTime: p=0.34684; t(58)=0.94844; d=0.24415 --- grp1(Explorative): mn=15102.3; std=17414.9; grp2(Focused): mn=11743.6; std=7354.54; 
+             TOL_OutMoveCount: p=0.58903; t(58)=0.54326; d=0.14057 --- grp1(Explorative): mn=8.65625; std=2.64708; grp2(Focused): mn=8.28571; std=2.62265; 
+             TOL_OutMoveScore: p=0.58903; t(58)=0.54326; d=0.14057 --- grp1(Explorative): mn=1.65625; std=2.64708; grp2(Focused): mn=1.28571; std=2.62265; 
+         TOL_OutTimeViolation: p=0.24046; t(58)=1.18601; d=0.30617 --- grp1(Explorative): mn=0.96875; std=1.20441; grp2(Focused): mn=0.642857; std=0.869835; 
+     TOL_OutTotalCorrectScore: p=0.38794; t(58)=-0.86990; d=-0.22532 --- grp1(Explorative): mn=4.78125; std=2.56193; grp2(Focused): mn=5.39286; std=2.88469; 
+    TOL_OutTotalExecutionTime: p=0.94579; t(58)=0.06829; d=0.01770 --- grp1(Explorative): mn=179941; std=65982.7; grp2(Focused): mn=178658; std=79568.4; 
+** TOL_OutTotalInitiationTime: p=0.04948; t(58)=2.00645; d=0.51735 --- grp1(Explorative): mn=136628; std=72555.5; grp2(Focused): mn=105084; std=43408.5; 
+        TOL_OutTotalMoveScore: p=0.83887; t(58)=0.20426; d=0.05288 --- grp1(Explorative): mn=25.9375; std=17.1783; grp2(Focused): mn=25; std=18.3566; 
+          TOL_OutTotalTimeAll: p=0.14239; t(58)=1.48715; d=0.38478 --- grp1(Explorative): mn=316569; std=85999.8; grp2(Focused): mn=283742; std=84492.3; 
+**                     FixAVG: p=0.01709; t(59)=2.45427; d=0.63060 --- grp1(Explorative): mn=13.9188; std=1.57486; grp2(Focused): mn=12.8221; std=1.91591; 
+               FixDurationAVG: p=0.20177; t(59)=-1.29090; d=-0.33168 --- grp1(Explorative): mn=313.368; std=43.984; grp2(Focused): mn=331.328; std=64.1391; 
+               SacDurationAVG: p=0.80867; t(59)=-0.24323; d=-0.06249 --- grp1(Explorative): mn=34.0392; std=4.30398; grp2(Focused): mn=34.332; std=5.10025; 
+             SacDurationTOTAL: p=0.11152; t(59)=1.61558; d=0.41510 --- grp1(Explorative): mn=51475.8; std=9994.5; grp2(Focused): mn=46738.5; std=12892.4; 
+**             SacDistanceAVG: p=0.02340; t(59)=2.32731; d=0.59798 --- grp1(Explorative): mn=89.2827; std=16.7291; grp2(Focused): mn=79.9618; std=14.1151; 
+=== regression ===========================
+                SS_Motivation: p=0.12124; r(59)=-0.201; F=2.472
++                       SR_RT: p=0.05751; r(59)=-0.245; F=3.753
+**              SR_Dprime_Old: p=0.01028; r(59)=0.326; F=7.029
+**             SR_Dprime_newb: p=0.01902; r(59)=0.300; F=5.815
+**       SR_Dprime_difference: p=0.02428; r(59)=0.288; F=5.346
+**          SR_Dprime_overall: p=0.01032; r(59)=0.326; F=7.022
+               Nback_V_Dprime: p=0.66965; r(59)=0.056; F=0.184
+         Nback_V_ReactionTime: p=0.49933; r(59)=0.088; F=0.462
+               Nback_S_Dprime: p=0.32820; r(59)=-0.127; F=0.972
+         Nback_S_ReactionTime: p=0.90296; r(59)=0.016; F=0.015
+      Flanker_Incongruent_ACC: p=0.67283; r(59)=-0.055; F=0.180
+**      Flanker_Congruent_ACC: p=0.01390; r(59)=-0.313; F=6.428
+          Flanker_Neutral_ACC: p=0.23908; r(59)=-0.153; F=1.414
+          Flanker_Overall_ACC: p=0.39144; r(59)=-0.112; F=0.745
+       Flanker_Incongruent_RT: p=0.67250; r(59)=0.055; F=0.180
+         Flanker_Congruent_RT: p=0.48547; r(59)=-0.091; F=0.493
+           Flanker_Neutral_RT: p=0.56159; r(59)=-0.076; F=0.341
+           Flanker_Overall_RT: p=0.89911; r(59)=-0.017; F=0.016
+         TOL_OutExecutionTime: p=0.31639; r(58)=0.132; F=1.021
+        TOL_OutInitiationTime: p=0.50138; r(58)=0.088; F=0.458
+             TOL_OutMoveCount: p=0.40892; r(58)=0.109; F=0.692
+             TOL_OutMoveScore: p=0.40892; r(58)=0.109; F=0.692
+         TOL_OutTimeViolation: p=0.55744; r(58)=0.077; F=0.348
+     TOL_OutTotalCorrectScore: p=0.45700; r(58)=-0.098; F=0.561
+    TOL_OutTotalExecutionTime: p=0.83205; r(58)=-0.028; F=0.045
+   TOL_OutTotalInitiationTime: p=0.16852; r(58)=0.180; F=1.944
+        TOL_OutTotalMoveScore: p=0.91099; r(58)=-0.015; F=0.013
+          TOL_OutTotalTimeAll: p=0.41659; r(58)=0.107; F=0.669
+**                     FixAVG: p=0.00464; r(59)=0.358; F=8.663
+               FixDurationAVG: p=0.20759; r(59)=-0.164; F=1.624
+               SacDurationAVG: p=0.93005; r(59)=0.011; F=0.008
+**           SacDurationTOTAL: p=0.02812; r(59)=0.281; F=5.067
+**             SacDistanceAVG: p=0.00436; r(59)=0.360; F=8.793
+=== stimuli test ===================
+vehicles vs animals : SKL between groups 
+  p=0.00000; t(118)=-6.38837 cohen_d=-1.166 --- 
+  vehicles: mn=0.173868; std=0.0736446;   animals:  mn=0.29839; std=0.131805; 
+=== group test (each stimuli) ===================
+comparison between group models:
+  number of sig diff models (grp1 data KL): 50/120 
+  number of sig diff models (grp2 data KL): 34/120 
+  number of sig diff models (both):         15/120 
+  number of sig diff models (SKL):          71/120 
+=== group test (all stimuli) ===================
+comparison between group models:
+group 1 anova: 
+    Source    Sum Sq.       d.f.  Singular?   Mean Sq.          F     Prob>F 
+         S       1196        119          0      10.05      21.73          0 
+         G      118.6          1          0      118.6      256.4   8.47e-57 
+       S*G      67.02        119          0     0.5632      1.218    0.05489 
+     Error       3552       7680          0     0.4625                       
+     Total       4934       7919          0                                  
+
+group 2 anova: 
+    Source    Sum Sq.       d.f.  Singular?   Mean Sq.          F     Prob>F 
+         S       1271        119          0      10.68      15.07 6.751e-257 
+         G      86.96          1          0      86.96      122.6  2.992e-28 
+       S*G      42.37        119          0     0.3561     0.5022          1 
+     Error       4595       6480          0     0.7091                       
+     Total       5995       6719          0                                  
+

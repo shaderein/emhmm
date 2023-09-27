@@ -1,0 +1,137 @@
+========================================================================
+
+  Eye-Movement analysis with Hidden Markov Models (HMMs)
+  emhmm-toolbox
+
+  Antoni B. Chan, City University of Hong Kong
+  Janet H. Hsiao, University of Hong Kong
+  Tim Chuk, University of Hong Kong
+  Lan Hui, City University of Hong Kong
+
+  Copyright (c) 2021, City University of Hong Kong & University of Hong Kong
+
+========================================================================
+
+--- CHANGE LOG ---
+v0.80 2021/09/10
+- added co-clustering (handles stimuli with different configurations)
+- added VB co-clustering (co-clustering w/ automatic selection of numbers of groups and ROIs)
+- added co-clustering and VB co-clustering demo
+- added VB clustering (automatically select numbers of groups for clustering)
+- added VB clustering demos
+- new support functions: read in data for co-clustering (read_xls_fixations2, preprocess_fixations)
+- new support functions: save figure as image (savefigs), print cell table
+
+v0.78 2021/07/20
+- new functions for computing conditional and marginal entropies of an HMM
+- new demo for computing entropy (demo_faces_entropy)
+- new function to permute VHEM clusters (vhem_permute_clusters)
+- new function to compute symmetric KL divergence (stats_ttest_skl)
+- vbhmm_learn now supports specifying a fixed set of ROIs (fixed_rois option)
+- stats_ttest computes Cohen's d
+- read_xls_fixations now supports ignoring fixations outside of rectangular or elliptical region(s).
+- vbhmm_plot_compact, vhem_plot, and vhem_plot_fixations - added option to plot transition matrix on the bottom.
+- added FAQ in documentation.
+- various bug fixes
+- Note: co-clustering code will be released in the next version.
+
+v0.77 2020/03/12
+- beta code for co-clustering (cocluster directory)
+- various bug fixes
+
+v0.76 2019/06/15
+- for CogSci2019 tutorial: new demo and tutorial slides
+- various bug fixes
+
+v0.75 2019/02/22
+- use parallel for loop (parfor) to improve speed (if Parallel Computing Toolbox is available).
+- add vbopt.seed and hemopt.seed to seed the random number generator for reproducible results.
+- NOTE: an error will occur if you don't set the seed explicitly in vbopt/hemopt.
+- updated demo files to use vbopt.seed and hemopt.seed.
+- NOTE: you will need to update your experiment scripts to use vbopt.seed and hemopt.seed.
+- improved visualizations: text in figures now scale with the figure size.
+
+v0.74 2019/01/12 (internal)
+- can pass images directly to plotting functions.
+- grayscale option for figures
+- new functions: vbhmm_entropy, vbhmm_random_sample
+- handle empty HMMs in VHEM
+- fixed consistency with older versions of MATLAB.
+- improve numerical stability.
+
+v0.73 2018/06/13
+- vbhmm_standardize: add option to sort ROIs by steady-state probabilities of ROIs
+- vhem_cluster: add option to remove empty ROIs in the input HMMs (set by default)
+- new functions: vbhmm_prob_steadystate
+- bug fixes: VHEM with one ROI or tau=1 (thanks, Sara!)
+- internal cleanup
+
+v0.72 2018/05/19
+- added holistic/analytic representative models from PBR paper
+- support for MEX files in Linux
+- updated support for fixed groups is vbhmm_learn
+- new hyp optimization option: added 'W0log' and min/max hyp values
+- added support functions: vbhmm_remove_empty
+- plotting: added color labels for states
+- bug fixes: check for valid v0 hyperparameter
+- various improvements to numerical stability
+
+v0.71 2018/02/01
+- small bug fixes (Thanks Joe and Louis!)
+
+v0.70 2017/08/26
+- added automatic estimation of HMMs hyperparameters (vbhmm_learn, vbhmm_learn_batch)
+- added automatic selection of initialization for VHEM clustering.
+- added full covariance matrices for VHEM clustering (now default)
+- removed dependency on Image Processing toolbox.
+- improved speed using MEX files and other MATLAB tricks.
+
+v0.64 2016/06/07
+- (internal release)
+- bug fixes.
+- code cleanup for VHEM.
+
+v0.63 2017/05/25
+- added check for updates.
+- added stats_meanll - calculate mean LL for each subject.
+- added stats_stateseq - find the most likely ROI sequences.
+- updated face_demo to show the above two new analyses.
+- added conversion between different face images, and associated demo.
+- bug fixes.
+
+v0.62 2017/05/24
+- added support for more colors when plotting.
+- better plotting for large number of ROIs.
+
+v0.61 2017/05/17
+- BUG FIX in vbhmm_ll - length-1 sequences were accidently normalized as length-2 sequences.
+  This may affect some log-likelihood correlation tests. T-tests should not be affected much
+  since the difference between data LL of two HMMs is used.
+- remove vbhmm_ll_OLD
+- add support for 'gmm' initialization in VHEM-HMM
+
+v0.6 2017/02/13
+- minor bug fixes in vbhmm_fb (doesn't affect results)
+- code cleanup for vbhmm_em
+
+v0.5 2016/01/21
+- updated to handle fixation duration with xy; bug fixes; automatically select some hyperparameters.
+- updated for Antoine: options for gmdistribution.fit (random_gmm_opt); 
+
+v0.4 2016/01/13
+- added xls reader and demo; use random initialization; added documentation (docs)
+
+v0.3 2016/12/09
+- added more demos, added component splitting for initialization (random init is still better).
+
+v0.2 2016/11/21
+- added HEM clustering, ttest for HMMs, rearranged source files, added demo code
+
+v0.1 2016/08
+- initialize VB with ROIs, and use fixed ROIs
+
+v0.0 2016/06/17
+- distribution 20160617
+
+v0.0 2016/06
+- added VB-HMM for learning individual's HMMs
