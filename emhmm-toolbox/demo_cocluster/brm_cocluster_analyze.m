@@ -15,7 +15,7 @@ if 0
   %% input info (for experiment 10)
   fixationfile = 'brm-data/fixations-new.xlsx';
   imgdir  = 'brm-data/images/';
-  imgsize = [640; 480];
+  imgsize = [640; 280];
   imginfo = 'brm-data/stimuli-info.xlsx';
   outdir  = 'brm-data-vb-results/';
   indhmms = 'individual_hmms.mat';
@@ -25,7 +25,7 @@ else
   %% input info for exact BRM experiment (experiment 12)
   fixationfile = 'brm-data/fixations-new.xlsx';
   imgdir  = 'brm-data/images/';
-  imgsize = [640; 480];
+  imgsize = [640; 280];
   imginfo = 'brm-data/stimuli-info.xlsx';
   outdir  = 'brm-data-vb-results-paper/';
   indhmms = 'individual_hmms_paper.mat';

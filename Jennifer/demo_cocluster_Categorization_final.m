@@ -66,7 +66,7 @@ outgrpmat = 'vbcogroup_hmms.mat';
 % 5) outdir - where to save the output images and mat files.
 
 % change this to select one of the demos/experiments below
-OPT.datasource = 0
+OPT.datasource = 11
 
 switch(OPT.datasource)  
   case 0
@@ -140,9 +140,9 @@ switch(OPT.datasource)
     % this version predefines the number of clusters K=2
    
     %Categorization
-    OPT.fixationfile = 'Input-Data/Categorization/all-cat-data.xlsx';
-    OPT.imgdir       = 'HUAWEI-categorization-data/';
-    OPT.imgsize      = [400; 520];
+    OPT.fixationfile = 'bdd/fixation/hum_id_fix_12_17_2022_17_58.xlsx';
+    OPT.imgdir       = 'bdd/images/human';
+    OPT.imgsize      = [768; 1024];
     OPT.imginfo      = 'HUAWEI-categorization-data/stimuli-info.xlsx';
     OPT.outdir       = 'Categorization-all-final-results/';
 

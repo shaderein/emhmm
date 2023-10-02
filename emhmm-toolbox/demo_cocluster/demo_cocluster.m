@@ -74,7 +74,7 @@ switch(OPT.datasource)
     % using co-clustering (number of clusters K is set manually)
     OPT.fixationfile = 'test-data/test-data.xlsx';
     OPT.imgdir       = 'test-data/';
-    OPT.imgsize      = [1280; 768];
+    OPT.imgsize      = [1280; 569];
     OPT.imginfo      = 'test-data/test-info.xlsx';
     OPT.outdir       = 'test-data-results/';
     
