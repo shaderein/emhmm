@@ -97,7 +97,7 @@ for i=1:length(data)
     end
   end
   
-  gamma{i} = mygamma;
+  gamma{i} = mygamma; %TODO: classified cluster for each fixation point?
   
   if nargout >= 2
     roiseq{i} = ss;
