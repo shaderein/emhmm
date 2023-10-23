@@ -31,8 +31,8 @@ OPT.DEBUGMODE = 0;
 % flags to run individual HMMs and co-clustering
 %   1 = compute the HMMs and save them
 %   0 = use the previously saved ones
-do_indhmms = 1;  % for individual HMMs
-do_cluster = 1;  % for co-clutering HMMs
+do_indhmms = 0;  % for individual HMMs
+do_cluster = 0;  % for co-clutering HMMs
     
 % names of mat files for saving individual and group hmms
 outindmat = 'individual_hmms.mat';
@@ -142,21 +142,31 @@ switch(OPT.datasource)
     % Notes: the stimuli used in identification and explanation are
     % identical. So the stimuli_info files are shared 
 
+    OPT.HEM_K         = 2;    % normal: use K=2 clusters
+
     % Human
    
     %Categorization
-    OPT.fixationfile = 'bdd/fixation/hum_id_fix_12_17_2022_17_58.xlsx';
-    OPT.imgdir       = 'bdd/images/orib_hum_id_task_resized/';
-    OPT.imgsize      = [1024; 576];
-    OPT.imginfo      = 'bdd/image_info/hum_id_stimuli_info.xlsx';
-    OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-hum-local';
-
-    %Explanation
-    % OPT.fixationfile = 'bdd/fixation/hum_exp_fix_09_27_2023_19_40.xlsx';
+    % OPT.fixationfile = 'bdd/fixation/hum_id_fix_12_17_2022_17_58.xlsx';
     % OPT.imgdir       = 'bdd/images/orib_hum_id_task_resized/';
     % OPT.imgsize      = [1024; 576];
     % OPT.imginfo      = 'bdd/image_info/hum_id_stimuli_info.xlsx';
-    % OPT.outdir       = 'bdd/results/explanation/human';
+    % OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-hum-local/';
+
+    %Explanation
+    % OPT.fixationfile = 'bdd/fixation/hum_exp_fix_10_04_2023_02_54.xlsx';
+    % OPT.imgdir       = 'bdd/images/orib_hum_id_task_resized/';
+    % OPT.imgsize      = [1024; 576];
+    % OPT.imginfo      = 'bdd/image_info/hum_id_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/explanation/human/';
+
+    % Explanation whole screen
+    OPT.fixationfile = 'bdd/fixation/hum_exp_screen_10_07_2023_23_49.xlsx';
+    OPT.imgdir       = 'bdd/images/human_with_screen/';
+    OPT.imgsize      = [1024; 768];
+    OPT.imginfo      = 'bdd/image_info/hum_exp_screen_stimuli_info.xlsx';
+    OPT.outdir       = 'bdd/results/explanation/231018_human_whole_screen_vb_fixed_pos/';
+    OPT.HEM_K         = 1;    % fit one group to identify outliers
 
     % Vehicle
 
@@ -165,14 +175,22 @@ switch(OPT.datasource)
     % OPT.imgdir       = 'bdd/images/orib_veh_id_task_resized/';
     % OPT.imgsize      = [1024; 576];
     % OPT.imginfo      = 'bdd/image_info/veh_id_stimuli_info.xlsx';
-    % OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-veh-300-rerun';
+    % OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-veh-300-rerun/';
 
     %Explanation
-    % OPT.fixationfile = 'bdd/fixation/veh_exp_fix_09_27_2023_19_46.xlsx';
+    % OPT.fixationfile = 'bdd/fixation/veh_exp_screen_10_07_2023_23_49.xlsx';
     % OPT.imgdir       = 'bdd/images/orib_veh_id_task_resized/';
     % OPT.imgsize      = [1024; 576];
     % OPT.imginfo      = 'bdd/image_info/veh_id_stimuli_info.xlsx';
-    % OPT.outdir       = 'bdd/results/explanation/vehicle';
+    % OPT.outdir       = 'bdd/results/explanation/vehicle/';
+
+    % Explanation whole screen
+    % OPT.fixationfile = 'bdd/fixation/veh_exp_screen_10_07_2023_23_49.xlsx';
+    % OPT.imgdir       = 'bdd/images/vehicle_with_screen/';
+    % OPT.imgsize      = [1024; 768];
+    % OPT.imginfo      = 'bdd/image_info/veh_exp_screen_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/explanation/231015_vehicle_whole_screen_1-group/';
+    % OPT.HEM_K         = 1;    % fit one group to identify outliers
 
 
     %Categorization and Explanation
@@ -187,49 +205,103 @@ switch(OPT.datasource)
     OPT.vbopt.numtrials = 200;
     
     % co-clustering settings
-    OPT.vb_cocluster  = 1;
-    OPT.HEM_K         = 2;    % use K=2 clusters
-    OPT.HEM_S         = [];   % use median
+    OPT.vb_cocluster  = 0;
+    OPT.HEM_S         = 4;   % use median
     OPT.SWAP_CLUSTERS = []; % swap cluster IDs for consistency w/ paper
     OPT.hemopt.seed   = 3000;
     OPT.hemopt.trials = 200;
     outindmat = 'individual_hmms.mat';
     outgrpmat = 'cogroup_hmms.mat';  % file name for group mat
     
-    do_indhmms = 1;    % run individual HMMs (set to 0 to reuse results)
+    do_indhmms = 0;    % run individual HMMs (set to 0 to reuse results)
     do_cluster = 1;    % run co-clustering
     OPT.DEBUGMODE = 0; % for code testing, set debugging mode to 1
     
   case 12
-    %% replicate the exact BRM experiment using VB co-clustering
-    %  (This is the exact experiment used in the BRM paper.
-    %   Note that the individual HMMs are slightly different from the above 
-    %   experiments due to changes in MATLAB).
-    OPT.fixationfile = 'brm-data/fixations-new.xlsx';
-    OPT.imgdir       = 'brm-data/images/';
-    OPT.imgsize      = [640; 480];
-    OPT.imginfo      = 'brm-data/stimuli-info.xlsx';
-    OPT.outdir       = 'brm-data-vb-results-paper/';
+   %% after outliers removal
+    % this version predefines the number of clusters K=2
+
+    % Notes: the stimuli used in identification and explanation are
+    % identical. So the stimuli_info files are shared 
+
+    OPT.HEM_K         = 2;    % normal: use K=2 clusters
+
+    % Human
+   
+    %Categorization
+    % OPT.fixationfile = 'bdd/fixation/hum_id_fix_12_17_2022_17_58.xlsx';
+    % OPT.imgdir       = 'bdd/images/orib_hum_id_task_resized/';
+    % OPT.imgsize      = [1024; 576];
+    % OPT.imginfo      = 'bdd/image_info/hum_id_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-hum-local/';
+
+    %Explanation
+    % OPT.fixationfile = 'bdd/fixation/hum_exp_fix_10_04_2023_02_54.xlsx';
+    % OPT.imgdir       = 'bdd/images/orib_hum_id_task_resized/';
+    % OPT.imgsize      = [1024; 576];
+    % OPT.imginfo      = 'bdd/image_info/hum_id_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/explanation/human/';
+
+    % Explanation whole screen
+    % OPT.fixationfile = 'bdd/fixation/hum_exp_screen_10_07_2023_23_49.xlsx';
+    % OPT.imgdir       = 'bdd/images/human_with_screen/';
+    % OPT.imgsize      = [1024; 768];
+    % OPT.imginfo      = 'bdd/image_info/hum_exp_screen_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/explanation/human_whole_screen/';
+    % OPT.HEM_K         = 1;    % fit one group to identify outliers
+
+    % Vehicle
+
+    %Categorization
+    % OPT.fixationfile = 'bdd/fixation/veh_id_fix_12_07_2022_11_00.xlsx';
+    % OPT.imgdir       = 'bdd/images/orib_veh_id_task_resized/';
+    % OPT.imgsize      = [1024; 576];
+    % OPT.imginfo      = 'bdd/image_info/veh_id_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/identification/ORIB-data-vb-results-lab-veh-300-rerun/';
+
+    %Explanation
+    OPT.fixationfile = 'bdd/results/explanation/231012_vehicle_whole_screen_vb/veh_exp_cleaned_outliers_10_17_2023_20_06_pos_excluded.xlsx';
+    OPT.imgdir       = 'bdd/images/orib_veh_id_task_resized/';
+    OPT.imgsize      = [1024; 576];
+    OPT.imginfo      = 'bdd/image_info/veh_id_stimuli_info.xlsx';
+    OPT.outdir       = 'bdd/results/explanation/231017_vehicle_pos_excluded_vb_alpha/';
+
+    % Explanation whole screen
+    % OPT.fixationfile = 'bdd/fixation/veh_exp_screen_10_07_2023_23_49.xlsx';
+    % OPT.imgdir       = 'bdd/images/vehicle_with_screen/';
+    % OPT.imgsize      = [1024; 768];
+    % OPT.imginfo      = 'bdd/image_info/veh_exp_screen_stimuli_info.xlsx';
+    % OPT.outdir       = 'bdd/results/explanation/vehicle_whole_screen/';
+    % OPT.HEM_K         = 1;    % fit one group to identify outliers
+
+
+    %Categorization and Explanation
+    % OPT.fixationfile = 'Input-Data/all-cat-exp-data';
+    % OPT.imgdir       = 'HUAWEI-categorization-data/';
+    % OPT.imgsize      = [1024; 576];
+    % OPT.imginfo      = 'HUAWEI-categorization-data/stimuli-info.xlsx';
+    % OPT.outdir       = 'Categorization-Explanation-results/';
     
-    % individual HMM settings (set vbopt like this)    
-    OPT.S               = 2:4;  % number of ROIs to try
-    OPT.vbopt.numtrials = 100; 
-    outindmat           = 'individual_hmms_paper.mat'; % pre-computed individual HMMs
-
-    % co-clustering settings 
+    % individual HMM settings (set vbopt like this)
+    OPT.S               = 1:10;  % number of ROIs to try   
+    OPT.vbopt.numtrials = 200;
+    
+     % co-clustering settings 
     OPT.vb_cocluster    = 1;     % vb-coclustering
-    OPT.HEM_K           = 1:5;   % try these numbers of clusters
+    OPT.HEM_K           = 2;   % try these numbers of clusters
     OPT.HEM_S           = [];    % use median
-    OPT.SWAP_CLUSTERS   = [2 1]; % swap the cluster IDs for consistency w/ paper
+    OPT.SWAP_CLUSTERS   = [];
     OPT.vbhemopt.trials = 50;    % options for vb co-clustering
-    OPT.vbhemopt.seed   = 1200;
+    OPT.vbhemopt.seed   = 3000;
     OPT.vbhemopt.alpha0 = 1e6;   % encourage equal-sized clusters
-    outgrpmat           = 'vbcogroup_hmms_paper.mat';
-                
-    do_indhmms = 0;    % individual HMMs are already pre-computed
-    do_cluster = 1;    % run co-clustering
-    OPT.DEBUGMODE = 0; % for code-testing, set debugging mode
+    OPT.vbhemopt.v0     = 10;
 
+    outindmat = 'individual_hmms.mat';
+    outgrpmat = 'vbcogroup_hmms.mat';  % file name for group mat
+    
+    do_indhmms = 1;    % run individual HMMs (set to 0 to reuse results)
+    do_cluster = 1;    % run co-clustering
+    OPT.DEBUGMODE = 0; % for code testing, set debugging mode to 1
   otherwise
     error('bad mode');
 end
@@ -267,6 +339,8 @@ subplotwidth = 5;
 
 %% estimate the subject HMMs for each stimuili %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if (do_indhmms)
+
+  timeVal = tic;
 
   %% read fixations
   [alldata, SubjNames, TrialNames, StimuliNames] = read_xls_fixations2(OPT.fixationfile);
@@ -441,6 +515,8 @@ if (do_indhmms)
      'mapC', 'alldataC', 'hmm_subjects', 'vbopt');
  
   save('individual_3_hmms', 'hmm_subjects');
+
+  indhmmTime = toc(timeVal);
   
 else
   
@@ -481,6 +557,9 @@ if (do_cluster)
 
   %% vb co-clustering %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   if OPT.vb_cocluster
+
+    timeVal = tic;
+
     % default parameters
     hemopt = struct;
     vbhemopt.tau   = round(get_median_length(alldataC(:)));
@@ -530,8 +609,12 @@ if (do_cluster)
     fprintf('saving group MAT file: %s\n', outfile);
     save(outfile, 'vbco','vbhemopt','OPT');
   
+    vbhemTime = toc(timeVal);
     
   else
+
+    timeVal = tic;
+
     %% coclustering %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     hemopt.tau = round(get_median_length(alldataC(:)));
     hemopt.seed = 3000;
@@ -566,14 +649,16 @@ if (do_cluster)
       for i=1:length(cogroup_hmms)
         cogroup_hmms{i} = vhem_permute_clusters(cogroup_hmms{i}, OPT.SWAP_CLUSTERS);
       end
-    end
 
-    cogroup_hmms = cogroup_hmms_old
+      cogroup_hmms = cogroup_hmms_old
+    end
     
     %% save mat file
     outfile = [OPT.outdir outgrpmat];
     fprintf('saving group MAT file: %s\n', outfile);
-    save(outfile, 'cogroup_hmms','hemopt','OPT');    
+    save(outfile, 'cogroup_hmms','hemopt','OPT');  
+
+    hemTime = toc(timeVal);
   end
      
 else
@@ -676,7 +761,7 @@ for j=1:Nstimuli
     outfile = [OPT.outdir OPT.outdir_grphmms sprintf('grphmms_all_%03d', count)];
     fprintf('saving co-clustering group HMMs: %s\n', outfile);
     export_fig(outfile, '-png', '-transparent');    
-    %savefigs(outfile, OPT.IMAGE_EXT);
+    % savefigs(outfile, OPT.IMAGE_EXT);
     count = count+1;
     clf
   end

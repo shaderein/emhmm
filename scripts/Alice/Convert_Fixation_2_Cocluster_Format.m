@@ -21,11 +21,11 @@ addpath(genpath(filepath)); % add all the folders under this directory
 
 %% import the raw files 
 % input the fixations from the raw file 
-fixInputR = readtable("hum_id_task_60_parti_1216.xlsx"); % CHANGE the file's name
+fixInputR = readtable("../bdd/fixation/raw_fixation_report_jinhan_231002/human_exp_raw.xlsx"); % CHANGE the file's name
 fixInput1 = array2table([fixInputR.CURRENT_FIX_X fixInputR.CURRENT_FIX_Y ...
     fixInputR.CURRENT_FIX_DURATION fixInputR.TRIAL_INDEX]);
 fixInput1.Properties.VariableNames = {'CURRENT_FIX_X','CURRENT_FIX_Y','CURRENT_FIX_DURATION','Trial'}; % rename the variables
-fixInput1.CURRENT_FIX_Y = fixInput1.CURRENT_FIX_Y - 96; % normalize the y coordinates so that the fixations will match
+% fixInput1.CURRENT_FIX_Y = fixInput1.CURRENT_FIX_Y - 30; % normalize the y coordinates so that the fixations will match
 
 % for the pilot, the session label is number, so i add this part to combine
 % all the information 
@@ -42,10 +42,38 @@ fixInput = [fixInput1 fixInput2]; % concat the tables into one
 cocluster_data = removevars(fixInput,"CURRENT_FIX_DURATION");
 check   = contains(cocluster_data.Image, '_id.jpg'); % check to see if the rows has contained practice trials
 cocluster_data = cocluster_data(~check, :          ); 
-SubjectID = cocluster_data.SessionLabel;
-TrialID = num2str(cocluster_data.Trial);
+
+% Count trials in each block
+% human
+block_start = [0,49,98,146]; % [49,49,48,14];
+
+% vehicle
+block_start = [0,49,98,148]; % [49,49,50,12];
+
+
+% Explanation data grouped into blocks in the format 001ETx
+% remove block suffix and 
+% use cumulative trial numbering
+
+% % Extract the relevant columns from the table
+sessionLabels = cocluster_data.SessionLabel;
+trials = cocluster_data.Trial;
+
+% Get the last character of each session label
+blocks = cellfun(@(x) str2double(x(end)), sessionLabels);
+
+% Remove the last character from each session label
+SubjectID = cellfun(@(x) x(1:end-1), sessionLabels, 'UniformOutput', false);
+
+% Vectorize the block_start function
+blockStartValues = arrayfun(@(x) block_start(x), blocks);
+
+% Add the corresponding block_start value to each trial
+trials = trials + blockStartValues;
+
+TrialID = num2str(trials);
 num = size(TrialID);
-trial = repmat('Trial',num(1),1);
+trial = repmat('Trial  ',num(1),1);
 TrialID = strcat(trial,TrialID);
 StimuliID = cocluster_data.Image; 
 FixX = cocluster_data.CURRENT_FIX_X;
@@ -53,5 +81,5 @@ FixY = cocluster_data.CURRENT_FIX_Y;
 cocluster_data = table(SubjectID, TrialID, StimuliID, FixX, FixY);
 
 % save the export file 
-filename = sprintf('hum_id_fix_%s.xlsx', datestr(now,'mm_dd_yyyy_HH_MM'));
+filename = sprintf('../bdd/fixation/hum_exp_screen_%s.xlsx', datestr(now,'mm_dd_yyyy_HH_MM'));
 writetable(cocluster_data, [filepath '/' filename]);
