@@ -66,7 +66,7 @@ outgrpmat = 'vbcogroup_hmms.mat';
 % 5) outdir - where to save the output images and mat files.
 
 % change this to select one of the demos/experiments below
-OPT.datasource = 12.3
+OPT.datasource = 13.1
 root = 'H:/OneDrive - The University Of Hong Kong'
 
 % Notes: the stimuli used in identification and explanation are
@@ -226,7 +226,6 @@ switch(OPT.datasource)
     OPT.HEM_K         = 2;    % normal: use K=2 clusters
 
     % Vehicle. Explanation. Image
-    Explanation
     OPT.fixationfile = [root '/bdd/results/explanation/231018_vehicle_whole_screen_vb_fixed_pos/veh_exp_cleaned_outliers_10_23_2023_23_15_pos_fixed.xlsx'];
     OPT.imgdir       = [root '/bdd/images/orib_veh_id_task_resized/'];
     OPT.imgsize      = [1024; 576];
