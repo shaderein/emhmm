@@ -67,7 +67,7 @@ outgrpmat = 'vbcogroup_hmms.mat';
 
 % change this to select one of the demos/experiments below
 OPT.datasource = 12.3
-root = 'H:\OneDrive - The University Of Hong Kong'
+root = 'H:/OneDrive - The University Of Hong Kong'
 
 % Notes: the stimuli used in identification and explanation are
 % identical. So the stimuli_info files are shared 
@@ -79,11 +79,11 @@ switch(OPT.datasource)
     % this version predefines the number of clusters K=1
 
     % Vehicle, Explanation, whole screen
-    OPT.fixationfile = [root '\bdd\fixation\veh_exp_screen_10_07_2023_23_49.xlsx'];
-    OPT.imgdir       = [root '\bdd\images\vehicle_with_screen\'];
+    OPT.fixationfile = [root '/bdd/fixation/veh_exp_screen_10_07_2023_23_49.xlsx'];
+    OPT.imgdir       = [root '/bdd/images/vehicle_with_screen/'];
     OPT.imgsize      = [1024; 768];
-    OPT.imginfo      = [root '\bdd\image_info\veh_exp_screen_stimuli_info.xlsx'];
-    OPT.outdir       = [root '\bdd\results\explanation\231015_vehicle_whole_screen_1-group\'];
+    OPT.imginfo      = [root '/bdd/image_info/veh_exp_screen_stimuli_info.xlsx'];
+    OPT.outdir       = [root '/bdd/results/explanation/231015_vehicle_whole_screen_1-group/'];
     OPT.HEM_K         = 1;    % fit one group to identify outliers
     
     % individual HMM settings (set vbopt like this)
@@ -108,11 +108,11 @@ switch(OPT.datasource)
     % this version predefines the number of clusters K=1
 
     % Human, Explanation, whole screen
-    OPT.fixationfile = [root '\bdd\fixation\hum_exp_screen_10_07_2023_23_49.xlsx'];
-    OPT.imgdir       = [root '\bdd\images\human_with_screen\'];
+    OPT.fixationfile = [root '/bdd/fixation/hum_exp_screen_10_07_2023_23_49.xlsx'];
+    OPT.imgdir       = [root '/bdd/images/human_with_screen/'];
     OPT.imgsize      = [1024; 768];
-    OPT.imginfo      = [root '\bdd\image_info\hum_exp_screen_stimuli_info.xlsx'];
-    OPT.outdir       = [root '\bdd\results\explanation\231015_human_whole_screen_1-group\'];
+    OPT.imginfo      = [root '/bdd/image_info/hum_exp_screen_stimuli_info.xlsx'];
+    OPT.outdir       = [root '/bdd/results/explanation/231015_human_whole_screen_1-group/'];
     OPT.HEM_K         = 1;    % fit one group to identify outliers
     
     % individual HMM settings (set vbopt like this)
@@ -227,11 +227,11 @@ switch(OPT.datasource)
 
     % Vehicle. Explanation. Image
     Explanation
-    OPT.fixationfile = [root '/bdd/results/explanation/231012_vehicle_whole_screen_vb/veh_exp_cleaned_outliers_10_17_2023_20_06_pos_excluded.xlsx'];
+    OPT.fixationfile = [root '/bdd/results/explanation/231018_vehicle_whole_screen_vb_fixed_pos/veh_exp_cleaned_outliers_10_23_2023_23_15_pos_fixed.xlsx'];
     OPT.imgdir       = [root '/bdd/images/orib_veh_id_task_resized/'];
     OPT.imgsize      = [1024; 576];
     OPT.imginfo      = [root '/bdd/image_info/veh_id_stimuli_info.xlsx'];
-    OPT.outdir       = [root '/bdd/results/explanation/231017_vehicle_pos_excluded_vb_alpha/'];
+    OPT.outdir       = [root '/bdd/results/explanation/231023_vehicle_posneg_fixed_vhem_alpha/'];
     
     % individual HMM settings (set vbopt like this)
     OPT.S               = 1:10;  % number of ROIs to try   
