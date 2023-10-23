@@ -195,3 +195,8 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+## Project
+
+# Sometimes OPT will be overwritten by saved data reloaded and save to a new bdd folder under current path. Should manually move them to OneDrive
+scripts/bdd/
