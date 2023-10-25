@@ -1,0 +1,33 @@
+% Do it for each class separately: veh vs hum
+root = 'H:/OneDrive - The University Of Hong Kong/';
+
+DET = load([root 'bdd/results/identification/ORIB-data-vb-results-lab-veh-300-rerun/veh_vbcogroup_hmms_300_run.mat']);
+EXP = load([root 'bdd/results/explanation/231023_vehicle_posneg_fixed_vhem_alpha/vbcogroup_hmms.mat']);
+
+DET_group1 = DET.cogroup_hmms{1,1}.groups{1};
+DET_group2 = DET.cogroup_hmms{1,1}.groups{2};
+
+fprintf("==== Groups in Detection Task ====\nGroup 1: %d Subjects, Group 2: %d Subjects\n",...
+    length(DET_group1), length(DET_group2));
+
+EXP_group1 = EXP.vbco.groups{1};
+EXP_group2 = EXP.vbco.groups{2};
+
+fprintf("==== Groups in Explanation Task ====\nGroup 1: %d Subjects, Group 2: %d Subjects\n\n",...
+    length(EXP_group1), length(EXP_group2));
+
+fprintf("==== DET Group 1 ∩ EXP Group 1 ====\n%d common subjects:\n%s\n",...
+    length(intersect(DET_group1, EXP_group1)),...
+    string(mat2str(intersect(DET_group1, EXP_group1))));
+
+fprintf("==== DET Group 1 ∩ EXP Group 2 ====\n%d common subjects:\n%s\n",...
+    length(intersect(DET_group1, EXP_group2)),...
+    string(mat2str(intersect(DET_group1, EXP_group2))));
+
+fprintf("==== DET Group 2 ∩ EXP Group 1 ====\n%d common subjects:\n%s\n",...
+    length(intersect(DET_group2, EXP_group1)),...
+    string(mat2str(intersect(DET_group2, EXP_group1))));
+
+fprintf("==== DET Group 2 ∩ EXP Group 2 ====\n%d common subjects:\n%s\n",...
+    length(intersect(DET_group2, EXP_group2)),...
+    string(mat2str(intersect(DET_group2, EXP_group2))));

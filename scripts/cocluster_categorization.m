@@ -66,13 +66,53 @@ outgrpmat = 'vbcogroup_hmms.mat';
 % 5) outdir - where to save the output images and mat files.
 
 % change this to select one of the demos/experiments below
-OPT.datasource = 13.1
+OPT.datasource = 1
 root = 'H:/OneDrive - The University Of Hong Kong'
 
 % Notes: the stimuli used in identification and explanation are
 % identical. So the stimuli_info files are shared 
 
-switch(OPT.datasource)  
+switch(OPT.datasource) 
+  % case 0 & 1 for debugging
+  case 0
+        %% synthetic data (10 trials per person per stimuli)
+        % using co-clustering (number of clusters K is set manually)
+        OPT.fixationfile = 'test-data/test-data.xlsx';
+        OPT.imgdir       = 'test-data/';
+        OPT.imgsize      = [1280; 768];
+        OPT.imginfo      = 'test-data/test-info.xlsx';
+        OPT.outdir       = 'test-data-results/';
+
+        OPT.S = 1:3;
+        OPT.HEM_K = 2;
+        OPT.HEM_S = [];
+        OPT.SWAP_CLUSTERS = [];
+        OPT.vb_cocluster = 0;   % use standard co-clustering
+
+        OPT.DEBUGMODE = 1; % set debugging mode for quick test
+        outgrpmat = 'cogroup_hmms.mat';  % file name for group mat
+
+    case 1
+        %% synthetic data (10 trials per person per stimuli)
+        % using VB co-clustering - automatically selects number of clusters K
+
+        addpath(genpath('../emhmm-toolbox/demo_cocluster/'));
+
+        OPT.fixationfile = 'test-data/test-data.xlsx';
+        OPT.imgdir       = 'test-data/';
+        OPT.imgsize      = [1280; 768];
+        OPT.imginfo      = 'test-data/test-info.xlsx';
+        OPT.outdir       = 'test-data-vb-results/';
+
+        OPT.S = 1:3;
+        OPT.HEM_K = 1:5;
+        OPT.HEM_S = [];
+        OPT.SWAP_CLUSTERS = [];
+        OPT.vb_cocluster = 1;   % use vb co-clustering
+
+        do_indhmms = 1;    % run individual HMMs (set to 0 to reuse results)
+        do_cluster = 1;    % run co-clustering 
+        OPT.DEBUGMODE = 1; % set debugging mode for quick test
 
   case 11.1
     %% (vehicle) 1-group co-clustering on the whole screen to detect text-box ROI and remove outliers
