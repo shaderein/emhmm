@@ -1,3 +1,12 @@
+# EMHMM Data & Results
+
+Root directory specified in scripts. Currently in Jinhan's HKU OneDrive.
+
+Raw data from Alice: (`/bdd/original`)
+- `experiments_finished`
+- `vehicle_and_human_experiment_editable_backup`
+- `stimuli_bothTask`
+
 # EMHMM Analysis
 
 ## `./bdd/`
