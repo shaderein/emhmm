@@ -7,11 +7,11 @@ DATA_PATH = "/mnt/h/OneDrive - The University Of Hong Kong/bdd/original/experime
 exp = pd.DataFrame()
 
 data_path = {
-    "hum": {
+    "human": {
         "data" : os.path.join(DATA_PATH, "human_experiment", "3Hum_ExpTask_Formal"),
         "block_start": [0,49,98,146]
         },
-    "veh": {
+    "vehicle": {
         "data" : os.path.join(DATA_PATH, "vehicle_experiment", "3Veh_ExpTask_Formal"),
         "block_start": [0,49,98,148]
         }
@@ -65,13 +65,31 @@ for cat, data in data_path.items():
 
             result['trialID'] = [t + block_start[block_num-1] for t in result['Trial_Index_']]
             
-            if "category" not in result:
-                if cat == 'hum':
-                    result["category"] = ["human" for i in range(result.shape[0])]
-                elif cat == 'veh':
+            # Label: vehicle, human
+            result["label"] = [cat for i in range(result.shape[0])]
+
+            # Category: person, rider, car, bus, truck
+            if cat == "vehicle":
+                if block_num == 4:
+                    result["category"] = ["bus" if c=="buses" else "truck" for c in result["category"]]
+                else:
                     result["category"] = ["car" for i in range(result.shape[0])]
+            elif cat == "human":
+                if block_num == 4:
+                    result["category"] = ["rider" for i in range(result.shape[0])]
+                else:
+                    # Equivalent to "pedestrain"?? Although in 1624_hum.jpg it's actually a rider in the BB?
+                    result["category"] = ["person" for i in range(result.shape[0])]
+
+            if "category" not in result:
+
+                if cat == 'hum':
+                    result["label"] = ["human" for i in range(result.shape[0])]
+                elif cat == 'veh':
+                    result["label"] = ["car" for i in range(result.shape[0])]
                 else:
                     assert(False)
+                
 
             exp = pd.concat([exp,result])
     exp.head()
