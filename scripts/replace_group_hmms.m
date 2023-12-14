@@ -5,39 +5,43 @@
 
 clear
 
-% vehicle
-dir = '../bdd/results/explanation/231018_vehicle_whole_screen_vb_fixed_pos/';
-edge_filenames = ["vbcogroup_hmms_71_329jpg_fixed_HEM_S_4.mat", ...
-                    "vbcogroup_hmms_102_570jpg_fixed_HEM_S_4.mat", ...
-                    "vbcogroup_hmms_113_67jpg_fixed_HEM_S_3.mat"];
-edge_ind = [71,102,113];
+root_dir = ['H:\OneDrive - The University Of Hong Kong\mscoco' '/exp_results_1group_1203/'];
+sub_dir = 'edgecase_hem_crghmm_outdir';
 
-% human
+%  Original cogrphmms
+all_cogroup_filename = 'cogroup_hmms_1203.mat';
+all_cogroup_output_filename = sprintf('cogroup_hmms_1203_fixed_%s.mat',datestr(now,'mm_dd_yyyy_HH_MM'));
+all_cogroup = load([root_dir all_cogroup_filename]);
 
-%%
-edge_cases = dictionary(edge_ind, edge_filenames);
+edge_filenames = dir(fullfile([root_dir sub_dir],'*.mat')); % load saved coclustering hmms with only one stimulus
+for k = 1:length(edge_filenames)
+    baseFileName = edge_filenames(k).name;
+    fullFileName = fullfile(root_dir, sub_dir, baseFileName);
+    fprintf(1, 'Now reading %s\n', fullFileName);
+    
+    e_cogroup = load(fullFileName); 
 
-all_cogroup_filename = 'vbcogroup_hmms_orig.mat';
-all_cogroup_output_filename = sprintf('vbcogroup_hmms_pos_fixed_%s.mat',datestr(now,'mm_dd_yyyy_HH_MM'));
-all_cogroup = load([dir all_cogroup_filename]);
-
-all_cogroup_orig = all_cogroup; % debug
-
-%%
-
-for e = keys(edge_cases)'
-    e_filename = edge_cases(e);
-    e_cogroup = load(strcat(dir,e_filename));
-
+    e = regexp(baseFileName, '\d+','match');
+    e = str2num(e{1}); % get sorted index of stimulus in cogrouphmms
+    
     % replace corresponding varibles; not sure if all needed
 
-    all_cogroup.vbco.L_elbo(e,:) = e_cogroup.vbco.L_elbo;
+    if contains(fullFileName, 'edgecase_hem')
+        % non-vb coclustering 
 
-    all_cogroup.vbco.cogroup_hmms{1, e} = e_cogroup.vbco.cogroup_hmms{1,1};
-
-    all_cogroup.vbco.learn_hyps.vbopt.S(e) = e_cogroup.vbco.learn_hyps.vbopt.S(1);
-
-    all_cogroup.vbco.vbhemopt.S(e) = e_cogroup.vbco.vbhemopt.S(1);
+        all_cogroup.cogroup_hmms{e, 1}.hmms{1, 1} = e_cogroup.cogroup_hmms{1, 1}.hmms{1, 1};
+        
+        all_cogroup.cogroup_hmms{e, 1}.hemopt.N(e)   = e_cogroup.cogroup_hmms{1, 1}.hemopt.N;
+        
+    elseif contains(fullFileName, 'edgecase_vbhem')
+        all_cogroup.vbco.L_elbo(e,:) = e_cogroup.vbco.L_elbo;
+        
+        all_cogroup.vbco.cogroup_hmms{1, e} = e_cogroup.vbco.cogroup_hmms{1,1};
+        
+        all_cogroup.vbco.learn_hyps.vbopt.S(e) = e_cogroup.vbco.learn_hyps.vbopt.S(1);
+        
+        all_cogroup.vbco.vbhemopt.S(e) = e_cogroup.vbco.vbhemopt.S(1);
+    end
 end
 
-save([dir all_cogroup_output_filename],'-struct','all_cogroup');
+save([root_dir all_cogroup_output_filename],'-struct','all_cogroup');
